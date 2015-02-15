@@ -1,10 +1,14 @@
 'use strict';
 
 angular.module('shameWallApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, $modal, Auth) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },
+    {
+      'title': 'Calendar',
+      'link': '/calendar'
     }];
 
     $scope.isCollapsed = true;
@@ -19,5 +23,13 @@ angular.module('shameWallApp')
 
     $scope.isActive = function(route) {
       return route === $location.path();
+    };
+
+    $scope.openAddWorkout = function ()
+    {
+      $modal.open({
+        templateUrl: 'app/common/views/add-workout-form.html',
+        scope: $scope
+      });
     };
   });
